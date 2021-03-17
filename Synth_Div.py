@@ -1,6 +1,6 @@
 # The following program is a CLI application that will allow the user to perofrm a synthetic division on a 
 # polynomial of n terms.
-
+import re
 
 def syntheticDivide(terms,divisor):
     answer_list = []
@@ -23,9 +23,11 @@ print(' Welcome to the Synthetic Divider by Manuel Argueta!')
 
 while True:
     print('#======================================================================.')
-    term_list = [];
+    term_list = []
     print(' ')
-    divisor = int(input(' Please enter the constant term in the divisor: '))
+    divisorString = str(input(' Please enter the divisor: '))
+    divisorList = [int(d) for d in re.findall(r'-?\d+', divisorString)]
+    divisor = divisorList[0]
     terms = int(input(' Please enter the number of terms in polynomial in the dividend: '))
     for i in range(terms):
         newTerm = int(input(' Please enter the coefficent of term ' + str(i + 1) + ' of the polynomial being divided: '))
@@ -33,7 +35,7 @@ while True:
     answers = syntheticDivide(term_list, divisor)
     power = len(answers)-2
     print(' ')
-    op = '';
+    op = ''
     print('#======================================================================.')
     print(' Your Solution: ')
     for i in range(len(answers)):
@@ -67,7 +69,7 @@ while True:
             op = ' '
     print()
     print('#======================================================================.')
-    res = input(' Enter another problem?...(y/n): ' )
+    res = input(' Enter Another Problem?...(y/n): ' )
     if res != 'y':
         print('#======================================================================.')
         print(' Thanks for using this Synthetic Divider by Manuel Argueta!')
